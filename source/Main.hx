@@ -78,7 +78,12 @@ class Main extends Sprite
 		/*#if !debug
 		initialState = TitleState;
 		#end*/
-
+		#if mobile
+		gameWidth = 1280;
+		gameHeight = 720;
+		zoom = 1;
+		#end
+		
 		game = new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen);
 
 		addChild(game);
