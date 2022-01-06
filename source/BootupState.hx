@@ -29,17 +29,16 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import io.newgrounds.NG;
 import flixel.util.FlxSpriteUtil;
 import lime.app.Application;
 import openfl.Assets;
 import flash.geom.Point;
 import lime.app.Application;
 
-#if windows
-import Discord.DiscordClient;
 import Sys;
 import sys.FileSystem;
+#if windows
+import Discord.DiscordClient;
 #end
 
 #if cpp
@@ -75,10 +74,6 @@ class BootupState extends MusicBeatState
 		});
 		#end*/
 		
-		#if sys
-		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
-			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
-		#end
 
 		@:privateAccess
 		{

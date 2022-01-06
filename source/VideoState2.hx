@@ -15,12 +15,9 @@ import openfl.utils.AssetType;
 
 import openfl.Lib;
 
-using StringTools;
-
-#if cpp
 import webm.WebmPlayer;
-#end
 
+using StringTools;
 
 class VideoState2 extends MusicBeatState
 {
@@ -43,31 +40,28 @@ class VideoState2 extends MusicBeatState
 	public function new(source:String, toTrans:Void->Void, frameSkipLimit:Int = -1, autopause:Bool = false)
 	{
 		super();
-		
+
 		autoPause = autopause;
-		
+
 		leSource = source;
 		transFunction = toTrans;
-		#if !desktop
 		if (frameSkipLimit != -1 && GlobalVideo.isWebm)
 		{
-			//GlobalVideo.getWebm().webm.SKIP_STEP_LIMIT = frameSkipLimit;	
-			WebmPlayer.SKIP_STEP_LIMIT = frameSkipLimit;
+		//	WebmPlayer.SKIP_STEP_LIMIT = frameSkipLimit;	
 		}
-		#end
 	}
-	
+
 	override function create()
 	{
 		super.create();
 		FlxG.autoPause = false;
 		doShit = false;
-		
+
 		if (GlobalVideo.isWebm)
 		{
 		videoFrames = Std.parseInt(Assets.getText(leSource.replace(".webm", ".txt")));
 		}
-		
+
 		fuckingVolume = FlxG.sound.music.volume;
 		FlxG.sound.music.volume = 0;
 		var isHTML:Bool = false;
@@ -81,7 +75,7 @@ class VideoState2 extends MusicBeatState
 		{
 			html5Text = "You Are Using HTML5!";
 		}
-		defaultText = "";
+		defaultText = "If Your On HTML5\nTap Anything...\nThe Bottom Text Indicates If You\nAre Using HTML5...\n\n" + html5Text;
 		txt = new FlxText(0, 0, FlxG.width,
 			defaultText,
 			32);
@@ -111,11 +105,11 @@ class VideoState2 extends MusicBeatState
 		} else {
 			GlobalVideo.get().play();
 		}
-		
+
 		/*if (useSound)
 		{*/
 			//vidSound = FlxG.sound.play(leSource.replace(".webm", ".ogg"));
-		
+
 			/*new FlxTimer().start(0.1, function(tmr:FlxTimer)
 			{*/
 				vidSound.time = vidSound.length * soundMultiplier;
@@ -129,23 +123,23 @@ class VideoState2 extends MusicBeatState
 				doShit = true;
 			//}, 1);
 		//}
-		
+
 		if (autoPause && FlxG.sound.music != null && FlxG.sound.music.playing)
 		{
 			musicPaused = true;
 			FlxG.sound.music.pause();
 		}
 	}
-	
+
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		
+
 		if (useSound)
 		{
 			var wasFuckingHit = GlobalVideo.get().webm.wasHitOnce;
 			soundMultiplier = GlobalVideo.get().webm.renderedCount / videoFrames;
-			
+
 			if (soundMultiplier > 1)
 			{
 				soundMultiplier = 1;
@@ -179,7 +173,7 @@ class VideoState2 extends MusicBeatState
 			prevSoundMultiplier = soundMultiplier;
 			}
 		}
-		
+
 		if (notDone)
 		{
 			FlxG.sound.music.volume = 0;
@@ -190,7 +184,7 @@ class VideoState2 extends MusicBeatState
 		{
 			GlobalVideo.get().restart();
 		}
-		
+
 		if (FlxG.keys.justPressed.P)
 		{
 			txt.text = pauseText;
@@ -204,14 +198,14 @@ class VideoState2 extends MusicBeatState
 				txt.text = defaultText;
 			}
 		}
-		
+
 		if (controls.ACCEPT || GlobalVideo.get().ended || GlobalVideo.get().stopped)
 		{
 			txt.visible = false;
 			GlobalVideo.get().hide();
 			GlobalVideo.get().stop();
 		}
-		
+
 		if (controls.ACCEPT || GlobalVideo.get().ended)
 		{
 			notDone = false;
@@ -225,12 +219,12 @@ class VideoState2 extends MusicBeatState
 			FlxG.autoPause = true;
 			transFunction();
 		}
-		
+
 		if (GlobalVideo.get().played || GlobalVideo.get().restarted)
 		{
 			GlobalVideo.get().show();
 		}
-		
+
 		GlobalVideo.get().restarted = false;
 		GlobalVideo.get().played = false;
 		GlobalVideo.get().stopped = false;

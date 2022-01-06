@@ -12,9 +12,8 @@ import openfl.Lib;
 import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
-#if cpp
 import webm.WebmPlayer;
-#end
+
 
 class Main extends Sprite
 {
@@ -22,7 +21,7 @@ class Main extends Sprite
 	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var initialState:Class<FlxState> = BootupState; // The FlxState the game starts with.
 	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
-	var framerate:Int = 120; // How many frames per second the game should run at.
+	var framerate:Int = 60; // How many frames per second the game should run at.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 
@@ -95,15 +94,12 @@ class Main extends Sprite
 		vHandler.init2();
 		GlobalVideo.setVid(vHandler);
 		vHandler.source(ourSource);
-		#elseif desktop
+		#elseif sys
 		var str1:String = "WEBM SHIT"; 
 		var webmHandle = new WebmHandler();
 		webmHandle.source(ourSource);
 		webmHandle.makePlayer();
 		webmHandle.webm.name = str1;
-		#if !desktop
-		WebmPlayer.SKIP_STEP_LIMIT = 90;
-		#end
 		addChild(webmHandle.webm);
 		GlobalVideo.setWebm(webmHandle);
 		#end
@@ -112,12 +108,10 @@ class Main extends Sprite
 		addChild(new FPS(10, 3, 0xFFFFFF));
 		#end
 
-		#if !mobile
+
 		fpsCounter = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsCounter);
 		toggleFPS(FlxG.save.data.fps);
-
-		#end
 	}
 
 	var game:FlxGame;

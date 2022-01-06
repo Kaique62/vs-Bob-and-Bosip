@@ -2,13 +2,13 @@ package;
 
 import flixel.FlxG;
 import openfl.display.Sprite;
-#if desktop
+#if sys
 import webm.*;
 #end
 
 class WebmHandler
 {
-	#if desktop
+	#if sys
 	public var webm:WebmPlayer;
 	public var vidPath:String = "";
 	public var io:WebmIo;
@@ -28,24 +28,20 @@ class WebmHandler
 	
 	public function makePlayer():Void
 	{
-		io = new WebmIoFile(vidPath);
+		io = new WebmIoFile(Asset2File.getPath(vidPath));
 		webm = new WebmPlayer();
 		webm.fuck(io, false);
 		webm.addEventListener(WebmEvent.PLAY, function(e) {
 			onPlay();
-			FlxG.log.add('started');
 		});
 		webm.addEventListener(WebmEvent.COMPLETE, function(e) {
 			onEnd();
-			FlxG.log.add('completed');
 		});
 		webm.addEventListener(WebmEvent.STOP, function(e) {
 			onStop();
-			FlxG.log.add('stopped');
 		});
 		webm.addEventListener(WebmEvent.RESTART, function(e) {
 			onRestart();
-			FlxG.log.add('restarted');
 		});
 		webm.visible = false;
 		initialized = true;
@@ -53,8 +49,7 @@ class WebmHandler
 	
 	public function updatePlayer():Void
 	{
-		FlxG.log.add('ate your ass');
-		io = new WebmIoFile(vidPath);
+		io = new WebmIoFile(Asset2File.getPath(vidPath));
 		webm.fuck(io, false);
 	}
 	
@@ -62,7 +57,6 @@ class WebmHandler
 	{
 		if (initialized)
 		{
-			FlxG.log.add('what the fuck');
 			webm.play();
 		}
 	}
@@ -79,7 +73,6 @@ class WebmHandler
 	{
 		if (initialized)
 		{
-			FlxG.log.add('what the fuck part 2');
 			webm.restart();
 		}
 	}
@@ -165,12 +158,6 @@ class WebmHandler
 	public function show():Void
 	{
 		webm.visible = true;
-	}
-	#else
-	public var webm:Sprite;
-	public function new()
-	{
-	trace("THIS IS ANDROID! or some shit...");
 	}
 	#end
 }
