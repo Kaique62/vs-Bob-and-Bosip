@@ -345,6 +345,8 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+		Paths.clearUnusedMemory();
+
 		removedVideo = false;
 
 		instance = this;
@@ -2545,6 +2547,9 @@ class PlayState extends MusicBeatState
 			}
 		}
 		super.create();
+		
+		Paths.clearStoredMemory();
+
 		areYouReady = new FlxTypedGroup<FlxSprite>();
 		add(areYouReady);
 		for (i in 0...3) {

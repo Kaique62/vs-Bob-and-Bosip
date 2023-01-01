@@ -1,7 +1,10 @@
 package;
 
 import flixel.FlxG;
+import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
+import openfl.media.Sound;
+import openfl.system.System;
 import openfl.utils.AssetType;
 import openfl.utils.Assets;
 
@@ -10,7 +13,7 @@ class Paths
 	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
 
 	static var currentLevel:String;
-        public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
+    public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
 	public static var currentTrackedSounds:Map<String, Sound> = [];
 
 	public static var localTrackedAssets:Array<String> = [];

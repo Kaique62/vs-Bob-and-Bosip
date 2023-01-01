@@ -53,6 +53,9 @@ class VideoState extends MusicBeatState
 	
 	override function create()
 	{
+		Paths.clearUnusedMemory();
+		Paths.clearStoredMemory();
+		
 		super.create();
 		FlxG.autoPause = false;
 		doShit = false;
