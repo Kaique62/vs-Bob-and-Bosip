@@ -40,6 +40,9 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
+		#if debug
+		SUtil.uncaughtErrorHandler();
+		#end
 
 		if (stage != null)
 		{
