@@ -18,79 +18,44 @@ class Paths
 
 	public static var localTrackedAssets:Array<String> = [];
 
-	public static function clearUnusedMemory():Void
-	{
-		for (key in currentTrackedAssets.keys())
-		{
-			if (!localTrackedAssets.contains(key) && key != null)
-			{
+	public static function clearUnusedMemory() {
+		for (key in currentTrackedAssets.keys()) {
+			if (!localTrackedAssets.contains(key)) {
+				// get rid of it
 				var obj = currentTrackedAssets.get(key);
 				@:privateAccess
-				if (obj != null)
-				{
-					Assets.cache.removeBitmapData(key);
-					Assets.cache.clearBitmapData(key);
-					Assets.cache.clear(key);
+				if (obj != null) {
+					openfl.Assets.cache.removeBitmapData(key);
 					FlxG.bitmap._cache.remove(key);
 					obj.destroy();
 					currentTrackedAssets.remove(key);
 				}
 			}
 		}
-
-		for (key in currentTrackedSounds.keys())
-		{
-			if (!localTrackedAssets.contains(key) && key != null)
-			{
-				var obj = currentTrackedSounds.get(key);
-				if (obj != null)
-				{
-					Assets.cache.removeSound(key);
-					Assets.cache.clearSounds(key);
-					Assets.cache.clear(key);
-					currentTrackedSounds.remove(key);
-				}
-			}
-		}
-
-		// run the garbage collector for good measure lmfao
 		System.gc();
 	}
 
-	public static function clearStoredMemory():Void
-	{
+	public static function clearStoredMemory(?cleanUnused:Bool = false) {
 		@:privateAccess
 		for (key in FlxG.bitmap._cache.keys())
 		{
 			var obj = FlxG.bitmap._cache.get(key);
-			if (obj != null && !currentTrackedAssets.exists(key))
-			{
-				Assets.cache.removeBitmapData(key);
-				Assets.cache.clearBitmapData(key);
-				Assets.cache.clear(key);
+			if (obj != null && !currentTrackedAssets.exists(key)) {
+				openfl.Assets.cache.removeBitmapData(key);
 				FlxG.bitmap._cache.remove(key);
 				obj.destroy();
 			}
 		}
-
-		@:privateAccess
-		for (key in Assets.cache.getSoundKeys())
-		{
-			if (key != null && !currentTrackedSounds.exists(key))
-			{
-				var obj = Assets.cache.getSound(key);
-				if (obj != null)
-				{
-					Assets.cache.removeSound(key);
-					Assets.cache.clearSounds(key);
-					Assets.cache.clear(key);
-				}
+		for (key in currentTrackedSounds.keys()) {
+			if (!localTrackedAssets.contains(key) && key != null) {
+				Assets.cache.clear(key);
+				currentTrackedSounds.remove(key);
 			}
 		}
-
 		localTrackedAssets = [];
+		#if !html5 openfl.Assets.cache.clear("songs"); #end
 	}
-
+	
 	static public function setCurrentLevel(name:String)
 	{
 		currentLevel = name.toLowerCase();
