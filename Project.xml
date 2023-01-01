@@ -117,6 +117,7 @@
 	<haxelib name="discord_rpc" if="windows"/>
 	<haxelib name="linc_luajit" if="windows"/>
 	<haxelib name="actuate" />
+	<haxelib name="extension-androidtools" if="android" />
 	<haxelib name="extension-webm"/>
 
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
@@ -158,6 +159,14 @@
 
 	<!--Enable this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
+	
+	<!--Allow working memory greater than 1 Gig-->
+	<haxedef name="HXCPP_GC_BIG_BLOCKS" />
+
+	<!--Always enable Null Object Reference check-->
+	<haxedef name="HXCPP_CHECK_POINTER" />
+	<haxedef name="HXCPP_STACK_LINE" />
+	<haxedef name="HXCPP_STACK_TRACE"/>
 
 	<!-- _________________________________ Custom _______________________________ -->
 
