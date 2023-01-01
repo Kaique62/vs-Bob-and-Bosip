@@ -327,6 +327,7 @@ class StoryMenuState extends MusicBeatState
 
 		trace("Line 165");
 
+
 		super.create();
 		changeDifficulty();
 		bobmadshake = new FlxSprite( -198, -118).loadGraphic(Paths.image('storymenu/bobscreen'));
@@ -334,6 +335,8 @@ class StoryMenuState extends MusicBeatState
 		bobmadshake.visible = false;
 		add(bobmadshake);
 		bobsound = new FlxSound().loadEmbedded(Paths.sound('bob/bobscreen', 'shared'));
+
+		addVirtualPad(FULL, A_B);
 	}
 	//sorry for this LOL
 	function bop(i:FlxSprite):Void {

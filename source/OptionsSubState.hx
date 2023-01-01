@@ -71,11 +71,13 @@ class OptionsSubState extends MusicBeatSubstate
 			new FPSOption("Toggle the FPS Counter"),
 			new ReplayOption("View replays"),
 			#end
+			new CustomControls("edit a control"),
 			new FlashingLightsOption("Toggle flashing lights that can cause epileptic seizures and strain."),
 			new WatermarkOption("Enable and disable all watermarks from the engine."),
 			new BotPlay("Showcase your charts and mods with autoplay."),
 			new EraseSaveData("Erase ALL your save data. WARNING: this will close your game."),
 			new EEE("Scroll down in the loading gallery!"),
+			new CustomControls("edit a control")
 		])
 		
 	];

@@ -514,6 +514,10 @@ class MainMenuState extends MusicBeatState
 
 		
 
+
+		#if mobileC
+		addVirtualPad(UP_DOWN, A_B);
+		#end
 		super.create();
 		lock = new FlxSprite().loadGraphic(Paths.image('mainmenu/Lock'));
 		lock.scrollFactor.set(1, 1);

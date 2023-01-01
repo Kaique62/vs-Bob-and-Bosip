@@ -129,6 +129,7 @@ class VideoState extends MusicBeatState
 			musicPaused = true;
 			FlxG.sound.music.pause();
 		}
+		addVirtualPad(NONE, A);
 	}
 	
 	override function update(elapsed:Float)

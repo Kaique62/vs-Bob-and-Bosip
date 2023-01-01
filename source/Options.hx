@@ -97,7 +97,24 @@ class DFJKOption extends Option
 		return "Key Bindings";
 	}
 }
+class CustomControls extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		OptionsSubState.instance.openSubState(new ui.CustomControlsState());
+		return true;
+	}
+	private override function updateDisplay():String
+	{
+		return "mcontrols";
+	}
 
+}
 class CpuStrums extends Option
 {
 	public function new(desc:String)
