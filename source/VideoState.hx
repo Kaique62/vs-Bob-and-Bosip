@@ -52,7 +52,7 @@ class VideoState extends MusicBeatState
 	}
 	
 	override function create()
-	{
+	{		
 		super.create();
 		FlxG.autoPause = false;
 		doShit = false;
@@ -129,13 +129,25 @@ class VideoState extends MusicBeatState
 			musicPaused = true;
 			FlxG.sound.music.pause();
 		}
-		addVirtualPad(NONE, A);
 	}
 	
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 		
+		#if mobile
+		var justTouched:Bool = false;
+
+		for (touch in FlxG.touches.list)
+		{
+			justTouched = false;
+			
+			if (touch.justReleased){
+				justTouched = true;
+			}
+		}
+		#end
+
 		if (useSound)
 		{
 			var wasFuckingHit = GlobalVideo.get().webm.wasHitOnce;
@@ -200,14 +212,14 @@ class VideoState extends MusicBeatState
 			}
 		}
 		
-		if (controls.ACCEPT || GlobalVideo.get().ended || GlobalVideo.get().stopped)
+		if (controls.ACCEPT || GlobalVideo.get().ended || GlobalVideo.get().stopped || justTouched)
 		{
 			txt.visible = false;
 			GlobalVideo.get().hide();
 			GlobalVideo.get().stop();
 		}
 		
-		if (controls.ACCEPT || GlobalVideo.get().ended)
+		if (controls.ACCEPT || GlobalVideo.get().ended || justTouched)
 		{
 			notDone = false;
 			FlxG.sound.music.volume = fuckingVolume;
