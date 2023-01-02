@@ -52,9 +52,6 @@ class KeyBindMenu extends FlxSubState
 
 	override function create()
 	{	
-        Paths.clearUnusedMemory();
-		Paths.clearStoredMemory();
-
         for (i in 0...keys.length)
         {
             var k = keys[i];

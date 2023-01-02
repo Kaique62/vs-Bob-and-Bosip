@@ -95,9 +95,6 @@ class MainMenuState extends MusicBeatState
 	var useCharacter2alt:Bool = false;
 	override function create()
 	{
-		Paths.clearUnusedMemory();
-		Paths.clearStoredMemory();
-		
 		#if windows
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);

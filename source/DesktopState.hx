@@ -168,9 +168,6 @@ class DesktopState extends MusicBeatState
 	
 	override public function create():Void
 	{
-		Paths.clearUnusedMemory();
-		Paths.clearStoredMemory();
-		
 		if (FlxG.save.data.desktopStickers != null)
 			desktopStickers = FlxG.save.data.desktopStickers;
 		#if debug

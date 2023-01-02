@@ -38,9 +38,6 @@ class CoolLoadingState extends MusicBeatState
 	public var toSwitchToState:FlxState = null;
 	override function create()
 	{
-		Paths.clearUnusedMemory();
-		Paths.clearStoredMemory();
-		
 		var wow = new LoadingsState();
 		wow.instantAlpha = true;
 		openSubState(wow);

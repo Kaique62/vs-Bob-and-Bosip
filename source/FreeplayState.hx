@@ -75,9 +75,6 @@ class FreeplayState extends MusicBeatState
 	
 	override function create()
 	{
-		Paths.clearUnusedMemory();
-		Paths.clearStoredMemory();
-		
 		var initSonglist = CoolUtil.coolTextFile(Paths.txt('freeplaySonglist'));
 		FlxG.camera.zoom = 0.8;
 		for (i in 0...initSonglist.length)

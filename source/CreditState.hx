@@ -64,9 +64,6 @@ class CreditState extends MusicBeatState
 	
 	override function create()
 	{
-		Paths.clearUnusedMemory();
-		Paths.clearStoredMemory();
-		
 		super.create();
 		FlxG.camera.zoom = 0.8;
 

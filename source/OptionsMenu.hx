@@ -72,9 +72,6 @@ class OptionsMenu extends MusicBeatState
 	var menuBG:FlxSprite;
 	override function create()
 	{
-		Paths.clearUnusedMemory();
-		Paths.clearStoredMemory();
-		
 		instance = this;
 		menuBG = new FlxSprite().loadGraphic(Paths.image("option_bg"));
 

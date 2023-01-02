@@ -103,9 +103,6 @@ class StoryMenuState extends MusicBeatState
 	var spookyMenu:FlxSound;
 	override function create()
 	{	
-		Paths.clearUnusedMemory();
-		Paths.clearStoredMemory();
-		
 		spookyMenu = FlxG.sound.play(Paths.music('nightmaremenu_remix'));//new FlxSound().loadEmbedded(Paths.music('nightmaremenu_remix'));
 		spookyMenu.volume = 0;
 		add(spookyMenu);

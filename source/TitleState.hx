@@ -56,9 +56,6 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		Paths.clearUnusedMemory();
-		Paths.clearStoredMemory();
-		
 		super.create();
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 		{
