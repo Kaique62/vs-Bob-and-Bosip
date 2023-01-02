@@ -23,6 +23,7 @@ import lime.utils.Assets;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.input.FlxKeyManager;
+import ui.FlxVirtualPad;
 
 
 using StringTools;
@@ -49,6 +50,8 @@ class KeyBindMenu extends FlxSubState
     var infoText:FlxText;
 
     var state:String = "select";
+
+    var _pad:FlxVirtualPad;
 
 	override function create()
 	{	
@@ -93,6 +96,10 @@ class KeyBindMenu extends FlxSubState
 
         textUpdate();
 
+        _pad = new FlxVirtualPad(NONE, A);
+    	_pad.alpha = 0.75;
+    	this.add(_pad);
+
 		super.create();
 	}
 
@@ -118,7 +125,7 @@ class KeyBindMenu extends FlxSubState
                     FlxG.sound.play(Paths.sound('scrollMenu'));
                     state = "input";
                 }
-                else if(FlxG.keys.justPressed.ESCAPE){
+                else if(FlxG.keys.justPressed.ESCAPE || _pad.buttonA.justPressed){
                     quit();
                 }
 				else if (FlxG.keys.justPressed.BACKSPACE){
