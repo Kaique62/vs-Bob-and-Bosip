@@ -35,8 +35,7 @@ import openfl.Assets;
 import flash.geom.Point;
 import D;
 
-import Sys;
-import sys.FileSystem;
+import openfl.utils.Assets;
 
 #if windows
 import Discord.DiscordClient;
@@ -250,7 +249,7 @@ class DesktopState extends MusicBeatState
 
 				if (Highscore.getMissesString(songHighscore, 2) != '0')
 					goldFolderCheck = false;
-				if (FileSystem.exists(Paths.instEXcheck(data[0]))) {
+				if (Assets.exists(Paths.instEXcheck(data[0]))) {
 					if (Highscore.getMissesString(songHighscore, 3) != '0')
 						goldFolderCheck = false;
 				}
@@ -757,7 +756,7 @@ class DesktopState extends MusicBeatState
 									}
 							}
 							
-							if (FileSystem.exists(Paths.instEXcheck(i))) {
+							if (Assets.exists(Paths.instEXcheck(i))) {
 								theText += '&-& %ex% &score:& %' + Highscore.getScore(songHighscore, 3) + '%\n';
 								if (Highscore.getMissesString(songHighscore, 3) == '0')
 									theText += '&-& %ex% &misses:& *Perfect!*\n';

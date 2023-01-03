@@ -15,10 +15,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import openfl.geom.Point;
 
-#if windows
-import Sys;
-import sys.FileSystem;
-#end
+import openfl.utils.Assets;
 
 import openfl.Lib;
 

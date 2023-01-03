@@ -17,12 +17,7 @@ import flixel.tweens.FlxTween;
 import openfl.geom.Point;
 import LoadingState.LoadingsState;
 import flixel.addons.transition.FlxTransitionableState;
-
-#if sys
-import Sys;
-import sys.FileSystem;
-#end
-
+import openfl.utils.Assets;
 import openfl.Lib;
 
 class DifficultySelectSubstate extends MusicBeatSubstate
@@ -62,12 +57,12 @@ class DifficultySelectSubstate extends MusicBeatSubstate
 		add(bg);
 
 		
-		if (FileSystem.exists(Paths.instcheck(song))) 
+		if (Assets.exists(Paths.instcheck(song))) 
 			hasRegular = true;
 
 		
 		
-		if (FileSystem.exists(Paths.instEXcheck(song))) 
+		if (Assets.exists(Paths.instEXcheck(song))) 
 			hasEX = true;
 
 		trace(hasRegular);

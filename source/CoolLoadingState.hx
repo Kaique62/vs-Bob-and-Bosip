@@ -26,10 +26,7 @@ import lime.app.Application;
 import flixel.math.FlxPoint;
 import flixel.math.FlxMath;
 
-#if windows
-import Discord.DiscordClient;
-import sys.FileSystem;
-#end
+import openfl.utils.Assets;
 
 using StringTools;
 

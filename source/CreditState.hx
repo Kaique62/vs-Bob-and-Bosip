@@ -16,10 +16,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
 
-#if windows
-import Sys;
-import sys.FileSystem;
-#end
+import openfl.utils.Assets;
 
 #if windows
 import Discord.DiscordClient;

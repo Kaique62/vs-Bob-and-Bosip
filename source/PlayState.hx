@@ -65,10 +65,7 @@ import ui.Mobilecontrols;
 #if windows
 import Discord.DiscordClient;
 #end
-#if sys
-import Sys;
-import sys.FileSystem;
-#end
+import openfl.utils.Assets;
 
 using StringTools;
 
@@ -374,7 +371,7 @@ class PlayState extends MusicBeatState
 			}
 		
 		#if windows
-		executeModchart = FileSystem.exists(Paths.lua(songLowercase  + "/modchart"));
+		executeModchart = Assets.exists(Paths.lua(songLowercase  + "/modchart"));
 		#end
 		#if !cpp
 		executeModchart = false; // FORCE disable for non cpp targets

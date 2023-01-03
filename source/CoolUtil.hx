@@ -2,10 +2,7 @@ package;
 
 import lime.utils.Assets;
 
-#if sys
-import sys.io.File;
-import sys.FileSystem;
-#end
+import openfl.utils.Assets;
 using StringTools;
 
 class CoolUtil
@@ -31,7 +28,7 @@ class CoolUtil
 
 	public static function preloadfile(path:String):Array<String>
 		{
-			var daList:Array<String> = File.getContent(path).trim().split('\n');
+			var daList:Array<String> = Assets.getText(path).trim().split('\n');
 	
 			for (i in 0...daList.length)
 			{

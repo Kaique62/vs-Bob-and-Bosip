@@ -52,7 +52,7 @@ class VideoState extends MusicBeatState
 	}
 	
 	override function create()
-	{		
+	{
 		super.create();
 		FlxG.autoPause = false;
 		doShit = false;
@@ -133,7 +133,6 @@ class VideoState extends MusicBeatState
 	
 	override function update(elapsed:Float)
 	{
-		super.update(elapsed);
 		
 		#if mobile
 		var justTouched:Bool = false;
@@ -148,6 +147,8 @@ class VideoState extends MusicBeatState
 		}
 		#end
 
+		super.update(elapsed);
+		
 		if (useSound)
 		{
 			var wasFuckingHit = GlobalVideo.get().webm.wasHitOnce;
@@ -212,14 +213,14 @@ class VideoState extends MusicBeatState
 			}
 		}
 		
-		if (controls.ACCEPT || GlobalVideo.get().ended || GlobalVideo.get().stopped || justTouched)
+		if (justTouched || controls.ACCEPT || GlobalVideo.get().ended || GlobalVideo.get().stopped)
 		{
 			txt.visible = false;
 			GlobalVideo.get().hide();
 			GlobalVideo.get().stop();
 		}
 		
-		if (controls.ACCEPT || GlobalVideo.get().ended || justTouched)
+		if (justTouched || controls.ACCEPT || GlobalVideo.get().ended)
 		{
 			notDone = false;
 			FlxG.sound.music.volume = fuckingVolume;

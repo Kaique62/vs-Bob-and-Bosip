@@ -138,7 +138,40 @@ class CpuStrums extends Option
 
 }
 
+class RenderTypes extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
 
+	public override function press():Bool
+	{
+		if (FlxG.save.data.render != 2)
+			FlxG.save.data.render += 1;
+		else
+			FlxG.save.data.render = 0;
+
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		switch (FlxG.save.data.render)
+		{
+			case 0:
+				return 'RAM Render';
+			case 1:
+				return 'GPU Flash Render';
+			case 2:
+				return 'GPU OpenFL Render';
+		}
+
+		return 'broken';
+	}
+}
 
 class DownscrollOption extends Option
 {
@@ -701,5 +734,5 @@ class BotPlay extends Option
 	}
 	
 	private override function updateDisplay():String
-		return "BotPlay " + (FlxG.save.data.botplay ? "on" : "off");
+		return "BotPlay " + (!FlxG.save.data.botplay ? "off" : "on");
 }

@@ -40,9 +40,9 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-		#if debug
+
 		SUtil.uncaughtErrorHandler();
-		#end
+
 
 		if (stage != null)
 		{
@@ -86,7 +86,9 @@ class Main extends Sprite
 		gameHeight = 720;
 		zoom = 1;
 		#end
-		
+
+		SUtil.checkPermissions();
+
 		game = new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen);
 
 		addChild(game);
@@ -112,9 +114,7 @@ class Main extends Sprite
 		GlobalVideo.setWebm(webmHandle);
 		#end
 
-		#if !mobile
 		addChild(new FPS(10, 3, 0xFFFFFF));
-		#end
 
 
 		fpsCounter = new FPS(10, 3, 0xFFFFFF);

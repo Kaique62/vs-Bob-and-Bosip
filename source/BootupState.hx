@@ -35,8 +35,7 @@ import openfl.Assets;
 import flash.geom.Point;
 import lime.app.Application;
 
-import Sys;
-import sys.FileSystem;
+import openfl.utils.Assets;
 #if windows
 import Discord.DiscordClient;
 #end
@@ -113,7 +112,7 @@ class BootupState extends MusicBeatState
 			}
 			if (!loadedStuff) {
 				FlxG.sound.cache(Paths.inst(songHighscore));
-				if (FileSystem.exists(Paths.instEXcheck(songHighscore))) {
+				if (Assets.exists(Paths.instEXcheck(songHighscore))) {
 					FlxG.sound.cache(Paths.instEX(songHighscore));
 				}
 			}
